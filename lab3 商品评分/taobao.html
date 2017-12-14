@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>商品评分</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		.word{
+			background: #f3f8fe;
+			height: 33px;
+			width: 558px;
+			font-size: 15px;
+			line-height: 33px;
+			padding-left: 19px;	
+		}
+		#stardiv{
+			height: 52px;
+			width: 521px;
+			margin-left: 13px;
+			line-height: 52px;
+		}
+		.starpic{
+			cursor: pointer;
+		}
+		.commentdiv{
+			margin-left: 13px;
+		}
+		.commentdiv,#commenttext{
+			height: 199px;
+			width: 521px;
+			border:1px solid #c0c2c6;
+			resize: none;/*禁止拖动多层文本框*/
+		}
+		.select{
+			color: #808080;
+			height: 25px;
+			width: 86px;
+			float: right;
+			border:1px solid #b0b0b0;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<div class="word">
+			宝贝与描述相符(打分匿名)
+		<div>
+		<div id="stardiv">
+			<img class="starpic" src="images/star0.png">
+			<img class="starpic" src="images/star0.png">
+			<img class="starpic" src="images/star0.png">
+			<img class="starpic" src="images/star0.png">
+			<img class="starpic" src="images/star0.png">
+		</div>
+		<div class="commentdiv">
+			<form>
+				<textarea id="commenttext" name="comment" value="111"/>
+				</textarea>
+				<select class="select">
+					<option value="public" selected="selected">公开评论</option>
+					<option value="private">匿名评论</option>
+				</select>
+			</form>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+var con = false;
+var newstar = document.getElementsByTagName("img");
+var commenttext = document.getElementById("commenttext");
+var stardiv = document.getElementById("stardiv");
+var starpic = document.getElementsByClassName("starpic");
+var k;
+var j;
+window.onload = function(){ 
+			newstar[0].onmouseover = function()
+			{
+				k=0;
+				starPic();
+			}
+			newstar[1].onmouseover = function()
+			{
+				k=1;
+				starPic();
+			}
+			newstar[2].onmouseover = function()
+			{
+				k=2;
+				starPic();
+			}
+			newstar[3].onmouseover = function()
+			{
+				k=3;
+				starPic();
+			}
+			newstar[4].onmouseover = function()
+			{
+				k=4;
+				starPic();
+			}
+
+			//1 star
+			function starPic(){
+				if(k==0)
+				{
+					newstar[0].src="images/star1.png";
+					for(var i =1;i<5;i++){
+						newstar[i].src="images/star0.png";
+					}
+					commenttext.value="1星";
+				}	
+			//2 stars
+				else if(k==1)
+				{
+					for(var i=0;i<2;i++){
+						newstar[i].src="images/star1.png";
+					}
+					for(var i =2;i<5;i++){
+						newstar[i].src="images/star0.png";
+					}
+					commenttext.value="2星";
+				}	
+			//3 stars
+				else if(k==2)
+				{
+					for(var i=0;i<3;i++){
+						newstar[i].src="images/star2.png";
+					}
+					for(var i =3;i<5;i++){
+						newstar[i].src="images/star0.png";
+					}
+					commenttext.value="3星";
+				}	
+			//4 stars
+				else if(k==3)
+				{
+					for(var i=0;i<4;i++){
+						newstar[i].src="images/star2.png";
+					}
+					for(var i =4;i<5;i++)
+					{
+						newstar[i].src="images/star0.png";
+					}
+					commenttext.value="4星";
+				}	
+			//5 stars
+				else if(k==4)
+				{
+					for(var i=0;i<5;i++)
+					{
+						newstar[i].src="images/star2.png";
+					}
+					commenttext.value="5星";
+				}
+			event.stopPropagation()?event.stopPropagation():event.cancelBubble = true;
+
+			if(con == true)
+				qd();
+			}
+			
+
+		//移除鼠标
+		stardiv.onmouseout = function hide()
+		{
+
+				if(con == false)
+				{
+					for(var i=0;i<5;i++)
+					{
+						starpic[i].src="images/star0.png";
+					}
+					commenttext.value="";
+				}
+		}
+
+
+		//点击事件
+		newstar[0].onclick = function ()
+		{
+			j=0;
+			qd();
+		}
+		newstar[1].onclick = function ()
+		{
+			j=1;
+			qd();
+		}
+		newstar[2].onclick = function ()
+		{
+			j=2;
+			qd();
+		}
+		newstar[3].onclick = function ()
+		{
+			j=3;
+			qd();
+		}
+		newstar[4].onclick = function ()
+		{
+			j=4;
+			qd();
+		}
+
+		//1 star
+		function qd(){
+				if(j==0){
+					newstar[0].src="images/star1.png";
+					for(var i =1;i<5;i++){
+						newstar[i].src="images/star0.png";
+					}
+					commenttext.value="1星";
+				}
+			//2 stars
+				else if(j==1){
+					for(var i=0;i<2;i++){
+						newstar[i].src="images/star1.png";
+					}
+					for(var i =2;i<5;i++){
+						newstar[i].src="images/star0.png";
+					}
+					commenttext.value="2星";
+				}
+			//3 stars
+				else if(j==2){
+					for(var i=0;i<3;i++){
+						newstar[i].src="images/star2.png";
+					}
+					for(var i =3;i<5;i++){
+						newstar[i].src="images/star0.png";
+					}
+					commenttext.value="3星";
+				}	
+			//4 stars
+				else if(j==1){
+					for(var i=0;i<4;i++){
+						newstar[i].src="images/star2.png";
+					}
+					for(var i =4;i<5;i++){
+						newstar[i].src="images/star0.png";
+					}
+					commenttext.value="4星";
+				}	
+			//5 stars
+				else if(j==1){
+					for(var i=0;i<5;i++){
+						newstar[i].src="images/star2.png";
+					}
+					commenttext.value="5星";
+				}
+			con = true;
+		}
+}
+	
+		
+	
+</script>
+</html>
